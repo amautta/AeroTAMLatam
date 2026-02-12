@@ -1,1 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>AeroTAMLatam | Vuelos y experiencias</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Sitio demo de AeroTAMLatam para laboratorio de Genesys Web Messaging con Digital Bot Flow. Busca vuelos, promociones y soporte."
+  />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- =========================================================
+    GENESYS SNIPPETS (PEGA AQUÍ TUS SNIPPETS)
+    - Mantén estos comentarios para el lab.
+    - Reemplaza los placeholders REEMPLAZAR_* con tus valores.
+  ========================================================== -->
+
+  <!-- [1] Genesys Predictive Engagement / Journey (ac.js) - OPCIONAL -->
+  <!--
+  <script>
+    (function(a,t,c,l,o,u,d){
+      a['_genesysJourneySdk']=o;
+      a[o]=a[o]||function(){(a[o].q=a[o].q||[]).push(arguments)};
+      a[o].l=1*new Date();
+      u=t.createElement(c); d=t.getElementsByTagName(c)[0];
+      u.async=1; u.src=l; u.charset='utf-8'; d.parentNode.insertBefore(u,d);
+    })(window, document, 'script', 'https://apps.REEMPLAZAR_REGION.pure.cloud/journey/sdk/js/web/v1/ac.js', 'ac');
+
+    ac('init', 'REEMPLAZAR_JOURNEY_WEBSITE_ID', { region: 'REEMPLAZAR_REGION' });
+    ac('pageview');
+  </script>
+  -->
+
+  <!-- [2] Genesys Web Messaging / Messenger (genesys.min.js) - OBLIGATORIO para Digital Bot Flow -->
+  <!-- Pega tu snippet real aquí. Este es un placeholder. -->
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () { (g[e].q = g[e].q || []).push(arguments) };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.REEMPLAZAR_REGION.pure.cloud/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-REEMPLAZAR_REGION',
+      deploymentId: 'REEMPLAZAR_DEPLOYMENT_ID'
+    });
+
+    // Ejemplo opcional: abrir el messenger por código (si tu deployment lo permite)
+    // Genesys("command", "Messenger.open");
+  </script>
+</head>
+
+<body>
+  <!-- HEADER / NAV -->
+  <header class="header">
+    <div class="container header__content">
+      <a class="brand" href="#top" aria-label="Ir al inicio">
+        <span class="brand__mark">✈</span>
+        <span class="brand__name">AeroTAMLatam</span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#promos">Promos</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#checkin">Check-in</a>
+        <a href="#soporte">Soporte</a>
+        <a class="nav__link-knowledge" href="knowledge.html">Knowledge Portal</a>
+
+        <button id="btn-cta-hero-nav" class="btn btn--outline">
+          Buscar vuelos
+        </button>
+      </nav>
+
+      <button id="btn-mobile" class="btn btn--icon" aria-label="Abrir menú" aria-expanded="false">
+        ☰
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="mobile-menu" hidden>
+      <a href="#promos">Promos</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#checkin">Check-in</a>
+      <a href="#soporte">Soporte</a>
+      <a href="knowledge.html">Knowledge Portal</a>
+      <button id="btn-cta-hero-nav-mobile" class="btn btn--primary btn--full">
+        Buscar vuelos
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__content">
+        <div class="hero__text">
+          <p class="eyebrow">Demo site · Genesys Web Messaging + Digital Bot Flow</p>
+          <h1>Vuela simple. Vuela con estilo gris &amp; amarillo.</h1>
+          <p class="hero__lead">
+            Sitio demo de <strong>AeroTAMLatam</strong> para practicar: bienvenida del bot,
+            captura de intención, handoff a agente y eventos (si usas Journey).
+          </p>
+
+          <div class="hero__actions">
+            <button id="btn-cta-hero" class="btn btn--primary">
+              Buscar vuelos
+            </button>
+            <button class="btn btn--ghost" id="btn-open-messenger">
+              Abrir chat
+            </button>
+          </div>
+
+          <div class="hero__chips" aria-label="Highlights">
+            <span>Equipaje flexible</span>
+            <span>Cambios en línea</span>
+            <span>Soporte 24/7</span>
+          </div>
+
+          <div class="notice">
+            <strong>Nota:</strong> Todo es demo. No hay compra real.
+          </div>
+        </div>
+
+        <div class="hero__media" aria-label="Imagen principal">
+          <div class="media-card">
+            <img
+              src="https://source.unsplash.com/mNgbM4QEUvw/1400x900"
+              alt="Vista desde la ventanilla: ala del avión sobre las nubes"
+              loading="lazy"
+            />
+            <div class="media-card__overlay">
+              <div>
+                <div class="media-card__title">AeroTAMLatam</div>
+                <div class="media-card__subtitle">Rutas LATAM · Conexiones rápidas</div>
+              </div>
+              <span class="badge">LAB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMOS -->
+    <section id="promos" class="section section--light">
+      <div class="container">
+        <header class="section__header">
+          <h2>Promos destacadas</h2>
+          <p>Usa estos cards para disparar intenciones del bot (“promo”, “cambios”, “equipaje”, etc.).</p>
+        </header>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card__top">
+              <span class="pill">Ruta</span>
+              <span class="price">Desde USD 129</span>
+            </div>
+            <h3>Santiago → Lima</h3>
+            <p class="muted">Conexiones rápidas y horarios ideales para negocios.</p>
+            <button class="btn btn--primary btn-paquete" data-paquete="SCL-LIM">
+              Cotizar este vuelo
+            </button>
+          </article>
+
+          <article class="card">
+            <div class="card__top">
+              <span class="pill">Ruta</span>
+              <span class="price">Desde USD 149</span>
+            </div>
+            <h3>Buenos Aires → São Paulo</h3>
+            <p class="muted">Perfecto para escapadas cortas y eventos.</p>
+            <button class="btn btn--primary btn-paquete" data-paquete="EZE-GRU">
+              Cotizar este vuelo
+            </button>
+          </article>
+
+          <article class="card">
+            <div class="card__top">
+              <span class="pill">Ruta</span>
+              <span class="price">Desde USD 99</span>
+            </div>
+            <h3>Bogotá → Medellín</h3>
+            <p class="muted">Tarifa demo para probar upsell de equipaje.</p>
+            <button class="btn btn--primary btn-paquete" data-paquete="BOG-MDE">
+              Cotizar este vuelo
+            </button>
+          </article>
+        </div>
+
+        <div class="split-banner">
+          <div class="split-banner__img">
+            <img
+              src="https://source.unsplash.com/vOrXxRoBzrw/1400x900"
+              alt="Avión en pista listo para despegar"
+              loading="lazy"
+            />
+          </div>
+          <div class="split-banner__content">
+            <h3>¿Cambio de vuelo? ¿Reembolso?</h3>
+            <p class="muted">
+              Ideal para el flujo del bot: “cambios”, “estado de vuelo”, “políticas de equipaje”
+              y escalamiento a agente.
+            </p>
+            <button id="btn-ask-policy" class="btn btn--outline">
+              Preguntar por políticas
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="section">
+      <div class="container">
+        <header class="section__header">
+          <h2>Beneficios a bordo</h2>
+          <p>Sección corta (ideal para mapear segmentos/engagement si también usas Journey).</p>
+        </header>
+
+        <div class="features">
+          <div class="feature">
+            <div class="feature__icon">🧳</div>
+            <div>
+              <h3>Equipaje flexible</h3>
+              <p class="muted">Crea una intención del bot para “equipaje de mano / bodega”.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature__icon">📲</div>
+            <div>
+              <h3>Check-in digital</h3>
+              <p class="muted">Usa el formulario de abajo como detonador de evento.</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature__icon">🗣️</div>
+            <div>
+              <h3>Soporte con bot</h3>
+              <p class="muted">Perfecto para Digital Bot Flow + handoff a agente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECK-IN / FORM -->
+    <section id="checkin" class="section section--light">
+      <div class="container two-col">
+        <div>
+          <h2>Check-in (demo)</h2>
+          <p class="muted">
+            Formulario demo para probar: validación, captura de datos y disparo de eventos.
+            No se envía a ningún backend.
+          </p>
+
+          <div class="mini-gallery" aria-label="Galería">
+            <img
+              src="https://source.unsplash.com/tCJRpfvzQD8/900x700"
+              alt="Asientos dentro de un avión"
+              loading="lazy"
+            />
+            <img
+              src="https://source.unsplash.com/x2k8zuKVx4w/900x700"
+              alt="Personas caminando en terminal de aeropuerto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="panel">
+          <form id="form-checkin" class="form" autocomplete="on">
+            <div class="form__row">
+              <div class="form__group">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" placeholder="Ej: Camila Pérez" required />
+              </div>
+              <div class="form__group">
+                <label for="apellido">Apellido</label>
+                <input id="apellido" name="apellido" type="text" placeholder="Ej: Rojas" required />
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label for="correo">Correo</label>
+              <input id="correo" name="correo" type="email" placeholder="ej@correo.com" required />
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label for="reserva">Código de reserva</label>
+                <input id="reserva" name="reserva" type="text" placeholder="Ej: ATML1234" required />
+              </div>
+              <div class="form__group">
+                <label for="ruta">Ruta</label>
+                <select id="ruta" name="ruta">
+                  <option value="">Selecciona</option>
+                  <option value="SCL-LIM">Santiago → Lima</option>
+                  <option value="EZE-GRU">Buenos Aires → São Paulo</option>
+                  <option value="BOG-MDE">Bogotá → Medellín</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label for="motivo">¿Qué necesitas?</label>
+              <select id="motivo" name="motivo">
+                <option value="checkin">Hacer check-in</option>
+                <option value="equipaje">Consultar equipaje</option>
+                <option value="cambio">Cambiar vuelo</option>
+                <option value="estado">Estado de vuelo</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Enviar solicitud
+            </button>
+
+            <p class="form__note">
+              Tip: Después de enviar, abre el chat para seguir el flujo del bot con el mismo “caso”.
+            </p>
+          </form>
+
+          <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOPORTE -->
+    <section id="soporte" class="section">
+      <div class="container support">
+        <div class="support__text">
+          <h2>Soporte y autoservicio</h2>
+          <p class="muted">
+            Usa el <strong>Knowledge Portal</strong> para artículos demo (equipaje, cambios, check-in).
+            Y usa el botón “Abrir chat” para probar Digital Bot Flow.
+          </p>
+
+          <div class="support__actions">
+            <a class="btn btn--outline" href="knowledge.html">Ir a Knowledge Portal</a>
+            <button class="btn btn--primary" id="btn-open-messenger-2">Abrir chat</button>
+          </div>
+
+          <ul class="list">
+            <li>Intención: “Estado de vuelo”</li>
+            <li>Intención: “Cambiar vuelo”</li>
+            <li>Intención: “Política de equipaje”</li>
+          </ul>
+        </div>
+
+        <div class="support__card">
+          <h3>Checklist rápido (lab)</h3>
+          <div class="checklist">
+            <label><input type="checkbox" /> Messenger carga en GitHub Pages</label>
+            <label><input type="checkbox" /> Bot responde (Digital Bot Flow)</label>
+            <label><input type="checkbox" /> Handoff a agente funciona</label>
+            <label><input type="checkbox" /> Eventos (si usas Journey) se registran</label>
+          </div>
+          <p class="muted small">
+            Los eventos de Journey se disparan desde <code>script.js</code> (con placeholders).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <div>
+          <div class="footer__brand">
+            <span class="brand__mark brand__mark--small">✈</span>
+            <strong>AeroTAMLatam</strong>
+          </div>
+          <p class="muted small">Sitio demo para laboratorio Genesys (Web Messaging + Digital Bot Flow).</p>
+        </div>
+
+        <div class="footer__links">
+          <a href="#promos">Promos</a>
+          <a href="#checkin">Check-in</a>
+          <a href="knowledge.html">Knowledge Portal</a>
+        </div>
+
+        <div class="footer__meta">
+          <p class="small">© <span id="year"></span> AeroTAMLatam</p>
+          <p class="small muted">Demo · Sin transacciones reales</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
