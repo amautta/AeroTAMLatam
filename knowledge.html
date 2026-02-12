@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Knowledge Portal | AeroTAMLatam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Centro de ayuda demo de AeroTAMLatam. Incluye contenedor para Genesys Support Center (Knowledge Portal)."
+  />
+  <link rel="stylesheet" href="styles.css" />
 
+  <!-- (Opcional) Si tu Support Center depende del mismo deployment del Messenger,
+       puedes dejar también el snippet del Messenger aquí (recomendado). -->
+
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () { (g[e].q = g[e].q || []).push(arguments) };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.REEMPLAZAR_REGION.pure.cloud/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-REEMPLAZAR_REGION',
+      deploymentId: 'REEMPLAZAR_DEPLOYMENT_ID'
+    });
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__content">
+      <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <span class="brand__mark">✈</span>
+        <span class="brand__name">AeroTAMLatam</span>
+      </a>
+
+      <nav class="nav" aria-label="Navegación">
+        <a href="index.html">Volver</a>
+      </nav>
+
+      <span class="nav-spacer"></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <header class="section__header">
+          <h1>Knowledge Portal (demo)</h1>
+          <p class="muted">
+            Artículos sugeridos: equipaje, cambios, check-in, estado de vuelo.
+            Debajo se renderiza el Support Center de Genesys.
+          </p>
+        </header>
+
+        <div class="kb-grid">
+          <article class="kb-card">
+            <h3>Equipaje</h3>
+            <p class="muted">Medidas, peso y cargos (demo).</p>
+          </article>
+          <article class="kb-card">
+            <h3>Cambios y reembolsos</h3>
+            <p class="muted">Políticas y casos comunes (demo).</p>
+          </article>
+          <article class="kb-card">
+            <h3>Check-in</h3>
+            <p class="muted">Tiempos, documentación y tips (demo).</p>
+          </article>
+        </div>
+
+        <!-- CONTENEDOR OBLIGATORIO -->
+        <div id="genesys-support-center"></div>
+
+        <div class="kb-footer">
+          <a class="btn btn--outline" href="index.html">Volver</a>
+          <button class="btn btn--primary" id="btn-open-messenger-kb">Abrir chat</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Botón opcional para abrir el messenger desde KB
+    document.getElementById('btn-open-messenger-kb')?.addEventListener('click', function () {
+      try { window.Genesys && Genesys("command", "Messenger.open"); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
