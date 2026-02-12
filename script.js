@@ -33,26 +33,6 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Menú móvil
-  const btnMobile = document.getElementById("btn-mobile");
-  const mobileMenu = document.getElementById("mobile-menu");
-  if (btnMobile && mobileMenu) {
-    btnMobile.addEventListener("click", function () {
-      const isHidden = mobileMenu.hasAttribute("hidden");
-      if (isHidden) mobileMenu.removeAttribute("hidden");
-      else mobileMenu.setAttribute("hidden", "");
-
-      btnMobile.setAttribute("aria-expanded", isHidden ? "true" : "false");
-    });
-
-    // Cerrar menú al navegar
-    mobileMenu.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => {
-        mobileMenu.setAttribute("hidden", "");
-        btnMobile.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
 
   // CTA Hero (evento requerido: click_cta_hero)
   const ctaHero = document.getElementById("btn-cta-hero");
