@@ -37,7 +37,7 @@
   // CTA Hero (evento requerido: click_cta_hero)
   const ctaHero = document.getElementById("btn-cta-hero");
   const ctaHeroNav = document.getElementById("btn-cta-hero-nav");
-  const ctaHeroNavMobile = document.getElementById("btn-cta-hero-nav-mobile");
+
 
   function onHeroCtaClick(origin) {
     recordJourneyEvent("click_cta_hero", {
@@ -52,7 +52,7 @@
     if (checkin) checkin.scrollIntoView({ behavior: "smooth" });
   }
 
-  [ctaHero, ctaHeroNav, ctaHeroNavMobile].forEach((btn) => {
+  [ctaHero, ctaHeroNav].forEach((btn) => {
     if (!btn) return;
     btn.addEventListener("click", () => onHeroCtaClick(btn.id));
   });
