@@ -489,7 +489,7 @@ code{ color: var(--yellow-2); }
   .support{ grid-template-columns: 1fr; }
   .footer__content{ grid-template-columns: 1fr; }
   .kb-grid{ grid-template-columns: 1fr; }
-  .nav{ display:none; }
-  .btn--icon{ display:inline-flex; }
+.btn--icon{ display:none; }
+
 }
 
