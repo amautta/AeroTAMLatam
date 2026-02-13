@@ -125,5 +125,45 @@
       if (correo && payload.correo) correo.value = payload.correo;
     });
   }
+
+   // CTA “Problemas con el equipaje” → abrir Messenger + (opcional) enviar mensaje inicial
+const linkBaggage = document.getElementById("link-baggage-chat");
+
+if (linkBaggage) {
+  linkBaggage.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    // (Opcional) Evento Journey si existe ac()
+    try {
+      if (typeof window.ac === "function") {
+        window.ac("record", "click_equipaje", {
+          brand: "AeroTAMLatam",
+          page: "index",
+          intent_hint: "equipaje"
+        });
+      }
+    } catch (err) {}
+
+    // Abrir Messenger
+    try {
+      if (window.Genesys) {
+        Genesys("command", "Messenger.open");
+
+        // (Opcional) Enviar mensaje inicial al bot
+        // Si tu deployment no soporta sendMessage, no pasa nada (se ignora).
+        Genesys("command", "Messenger.sendMessage", {
+          message: "Tengo problemas con mi equipaje"
+        });
+      } else {
+        console.warn("Genesys aún no está cargado.");
+      }
+    } catch (err) {
+      console.warn("Error abriendo Genesys Messenger:", err);
+    }
+  });
+}
+
+
+   
 })();
 
