@@ -493,3 +493,49 @@ code{ color: var(--yellow-2); }
 
 }
 
+/* =========================================================
+   CTA DESTACADO - PROBLEMAS CON EQUIPAJE
+========================================================= */
+
+.baggage-alert{
+  background: linear-gradient(90deg, var(--yellow) 0%, #ffb800 100%);
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.baggage-alert__content{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap:1rem;
+  flex-wrap: wrap;
+  color:#0b0f14;
+}
+
+.baggage-alert__text strong{
+  display:block;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: .3px;
+}
+
+.baggage-alert__text span{
+  display:block;
+  font-size: .95rem;
+  opacity: .85;
+}
+
+.btn--alert{
+  background:#0f141a;
+  color:var(--yellow);
+  border:2px solid #0f141a;
+  font-weight:800;
+  padding:.8rem 1.4rem;
+}
+
+.btn--alert:hover{
+  background:#1a212b;
+}
+
+
